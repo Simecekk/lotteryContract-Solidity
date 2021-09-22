@@ -16,8 +16,8 @@ contract Lottery {
 
     receive() external payable {
       require(
-        msg.value == 0.1 ether,
-        'require to sent exactly 0.1 ether'
+        msg.value == 0.001 ether,
+        'require to sent exactly 0.001 ether'
       );
       players.push(payable(msg.sender));
     }

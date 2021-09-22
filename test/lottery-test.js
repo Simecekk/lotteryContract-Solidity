@@ -22,16 +22,16 @@ describe("Lottery", function () {
       await expect(addr1.sendTransaction({
           to: lottery.address,
           value: ethers.utils.parseEther("0.05")
-      })).to.be.revertedWith('require to sent exactly 0.1 ether');
+      })).to.be.revertedWith('require to sent exactly 0.001 ether');
 
       await expect(addr1.sendTransaction({
           to: lottery.address,
           value: ethers.utils.parseEther("1.00")
-      })).to.be.revertedWith('require to sent exactly 0.1 ether');
+      })).to.be.revertedWith('require to sent exactly 0.001 ether');
 
       await addr1.sendTransaction({
           to: lottery.address,
-          value: ethers.utils.parseEther("0.1")
+          value: ethers.utils.parseEther("0.001")
       });
       expect(await lottery.players(0)).to.be.equal(addr1.address);
     });
@@ -45,13 +45,13 @@ describe("Lottery", function () {
 
       await addr1.sendTransaction({
           to: lottery.address,
-          value: ethers.utils.parseEther("0.1")
+          value: ethers.utils.parseEther("0.001")
       });
 
       expect(
         await lottery.getBalance()
       ).to.be.equal(
-        ethers.utils.parseEther("0.1")
+        ethers.utils.parseEther("0.001")
       );
 
     });
@@ -77,15 +77,15 @@ describe("Lottery", function () {
         let players = [addr1, addr2, addr3];
         await addr1.sendTransaction({
             to: lottery.address,
-            value: ethers.utils.parseEther("0.1")
+            value: ethers.utils.parseEther("0.001")
         });
         await addr2.sendTransaction({
             to: lottery.address,
-            value: ethers.utils.parseEther("0.1")
+            value: ethers.utils.parseEther("0.001")
         });
         await addr3.sendTransaction({
             to: lottery.address,
-            value: ethers.utils.parseEther("0.1")
+            value: ethers.utils.parseEther("0.001")
         });
         await expect(
           lottery.pickWinner()
